@@ -1,17 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import './index.css'
+import App from './App'
+import reportWebVitals from './reportWebVitals'
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import { FlagProvider } from '@unleash/proxy-client-react'
+
+const config = {
+  url: 'https://unleash-proxy.nunogois.com/proxy',
+  clientKey: 'ng-unleash-secret',
+  refreshInterval: 2,
+  appName: 'unleash-test',
+  environment: 'dev'
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
-    <App />
+    <FlagProvider config={config}>
+      <App />
+    </FlagProvider>
   </React.StrictMode>
-);
+)
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+reportWebVitals()
